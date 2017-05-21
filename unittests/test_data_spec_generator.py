@@ -1,7 +1,7 @@
 import unittest
 import struct
 from io import BytesIO
-from StringIO import StringIO
+from io import StringIO
 
 from data_specification import constants
 from data_specification.exceptions \
@@ -146,7 +146,7 @@ class TestDataSpecGeneration(unittest.TestCase):
                                       ("second", DataType.UINT32, 0x12345679),
                                       ("third", DataType.INT16, None),
                                       ("fourth", DataType.UINT64,
-                                       0x123456789ABCDEFL)])
+                                       0x123456789ABCDEF)])
         with self.assertRaises(DataSpecificationParameterOutOfBoundsException):
             self.dsg.define_structure(-1, [("first", DataType.UINT8, 0xAB)])
         with self.assertRaises(DataSpecificationParameterOutOfBoundsException):
@@ -946,7 +946,7 @@ class TestDataSpecGeneration(unittest.TestCase):
         self.dsg.print_value(2, True)
         self.dsg.print_value(2, True, DataType.INT32)
         self.dsg.print_value(2, True, DataType.INT64)
-        self.dsg.print_value(0x123456789ABCDEFL, False, DataType.UINT64)
+        self.dsg.print_value(0x123456789ABCDEF, False, DataType.UINT64)
         self.dsg.print_value(2, True, DataType.U88)
 
         with self.assertRaises(DataSpecificationParameterOutOfBoundsException):
@@ -971,7 +971,7 @@ class TestDataSpecGeneration(unittest.TestCase):
     def test_set_register_value(self):
         self.dsg.set_register_value(0, 0, False, DataType.UINT32)
         self.dsg.set_register_value(1, 0x12345678, False, DataType.UINT32)
-        self.dsg.set_register_value(2, 0x123456789ABCDEFL, False,
+        self.dsg.set_register_value(2, 0x123456789ABCDEF, False,
                                     DataType.UINT64)
         self.dsg.set_register_value(2, 0x01234567, False, DataType.INT32)
         self.dsg.set_register_value(3, 0x67, False, DataType.UINT8)
@@ -1020,7 +1020,7 @@ class TestDataSpecGeneration(unittest.TestCase):
         with self.assertRaises(DataSpecificationParameterOutOfBoundsException):
             self.dsg.set_write_pointer(constants.MAX_REGISTERS, True)
         with self.assertRaises(DataSpecificationParameterOutOfBoundsException):
-            self.dsg.set_write_pointer(0x123456789L, False)
+            self.dsg.set_write_pointer(0x123456789, False)
 
         self.skip_words(3)
         # SET_WR_PTR
@@ -1045,8 +1045,8 @@ class TestDataSpecGeneration(unittest.TestCase):
         self.dsg.write_value(0x12, 12)
         self.dsg.write_value(0x12, 0xFF, False, DataType.UINT8)
         self.dsg.write_value(0x12, 5, False, DataType.UINT16)
-        self.dsg.write_value(0x123456789ABCDEFL, 5, False, DataType.UINT64)
-        self.dsg.write_value(0x123456789ABCDEFL, 5, True, DataType.UINT64)
+        self.dsg.write_value(0x123456789ABCDEF, 5, False, DataType.UINT64)
+        self.dsg.write_value(0x123456789ABCDEF, 5, True, DataType.UINT64)
         self.dsg.write_value(0x123, 2, True, DataType.UINT64)
 
         with self.assertRaises(DataSpecificationParameterOutOfBoundsException):
@@ -1172,7 +1172,7 @@ class TestDataSpecGeneration(unittest.TestCase):
         self.dsg.set_structure_value(0, 0, 0x12, DataType.UINT8)
         self.dsg.set_structure_value(1, 2, 0x1234, DataType.INT16)
         self.dsg.set_structure_value(1, 1, 0x12345678, DataType.UINT32)
-        self.dsg.set_structure_value(10, 1, 0x123456789ABCDEFL,
+        self.dsg.set_structure_value(10, 1, 0x123456789ABCDEF,
                                      DataType.UINT64)
 
         self.dsg.set_structure_value(1, 0, 2, DataType.UINT8, True)
@@ -1340,7 +1340,7 @@ class TestDataSpecGeneration(unittest.TestCase):
                                       ("second", DataType.UINT32, 0x12345679),
                                       ("third", DataType.INT16, None),
                                       ("fourth", DataType.UINT64,
-                                       0x123456789ABCDEFL)])
+                                       0x123456789ABCDEF)])
 
         self.dsg.get_structure_value(0, 0, 0, False)
         self.dsg.get_structure_value(3, 0, 0, False)

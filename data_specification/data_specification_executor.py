@@ -128,7 +128,7 @@ class DataSpecificationExecutor(object):
         self.space_written = self.space_used
 
         # write the data from dsef.mem_regions previously computed
-        for i in xrange(constants.MAX_MEM_REGIONS):
+        for i in range(constants.MAX_MEM_REGIONS):
             memory_region = self.dsef.mem_regions[i]
             if memory_region is not None:
                 if ((memory_region.unfilled and
@@ -200,7 +200,7 @@ class DataSpecificationExecutor(object):
         next_free_offset = \
             pointer_table_size + constants.APP_PTR_TABLE_HEADER_BYTE_SIZE
 
-        for i in xrange(constants.MAX_MEM_REGIONS):
+        for i in range(constants.MAX_MEM_REGIONS):
             memory_region = self.dsef.mem_regions[i]
             if memory_region is not None:
                 pointer_table[i] = next_free_offset + start_address
@@ -234,7 +234,7 @@ class DataSpecificationExecutor(object):
         :rtype: unsigned int
         """
         size = constants.APP_PTR_TABLE_BYTE_SIZE
-        for i in xrange(constants.MAX_MEM_REGIONS):
+        for i in range(constants.MAX_MEM_REGIONS):
             memory_region = self.dsef.mem_regions[i]
             if memory_region is not None:
                 size += memory_region.allocated_size

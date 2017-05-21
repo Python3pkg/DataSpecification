@@ -1026,7 +1026,7 @@ class DataSpecificationGenerator(object):
         self.ongoing_function_definition = True
 
         read_only_flags = 0
-        for i in xrange(len(argument_by_value)):
+        for i in range(len(argument_by_value)):
             cmd_string = "{0:s} arg[{1:d}]=".format(cmd_string, i + 1)
             if argument_by_value[i]:
                 read_only_flags |= 2 ** i
@@ -1126,7 +1126,7 @@ class DataSpecificationGenerator(object):
         param_word = None
         if len(structure_ids) > 0:
             param_word = 0
-            for i in xrange(len(structure_ids)):
+            for i in range(len(structure_ids)):
                 if structure_ids[i] < 0 \
                         or structure_ids[i] >= constants.MAX_STRUCT_SLOTS:
                     raise exceptions.\
